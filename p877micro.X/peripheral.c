@@ -1,52 +1,23 @@
 /************************************************************************
-* Libreria de rutinas basicas para los PIC16F882/F883/F884/F886/F887    * 
+* Libreria de rutinas basicas para los PIC16F87xA                       * 
 *    Company: Universidad Evangelica Boliviana 							*
 *     Author: Pablo Zarate A. pablinza@me.com							*
-*    Version: DEC 2018 V18.12  	     									*
+*    Version: Dec  2018 V18.12  										*
 *    Summary: Es una libreria de funciones y procedimientos de uso base *
-*			  para los PIC serie 16F88x empleados en la materia ELT-436.*
+*			  para los PIC serie 16F87x empleados en la materia ELT-436.*
 ************************************************************************/
-#include "peripheral.h"
-void OSCSetup()
-{
-#if _XTAL_FREQ == 8000000
-    OSCCONbits.IRCF = 7;
-#elif _XTAL_FREQ == 4000000
-    OSCCONbits.IRCF = 6;
-#elif _XTAL_FREQ == 2000000
-    OSCCONbits.IRCF = 5;
-#elif _XTAL_FREQ == 1000000
-    OSCCONbits.IRCF = 4;
-#elif _XTAL_FREQ == 500000
-    OSCCONbits.IRCF = 3;
-#elif _XTAL_FREQ == 250000
-    OSCCONbits.IRCF = 2;
-#elif _XTAL_FREQ == 125000
-    OSCCONbits.IRCF = 1;
-#elif _XTAL_FREQ == 31000
-    OSCCONbits.IRCF = 0;
-#else 
-    #warning "Oscilador Interno no ajustado a Frecuencia"
-#endif
-#if _XTAL_FREQ < 125000
-    while(!OSCCONbits.LTS);
-#else
-    while(!OSCCONbits.HTS);   
-#endif
-}
-
 #ifndef USART_LIB
 void USARTSetup(unsigned int baud)
 {
     unsigned int brg;
-    TXSTAbits.BRGH = 1;
-    BAUDCTLbits.BRG16 = 1;
-    brg = _XTAL_FREQ/(4*(baud + 1));
+    TXSTAbits.BRGH = 1; //0=FREQ/(64*Baud) 1=FREQ/(16*Baud)
+    brg = _XTAL_FREQ/(16*(baud + 1));
     SPBRG = brg;
-    SPBRGH = brg >> 8;
+    TRISCbits.TRISC6 = 1; //TXD HighZ
+    TRISCbits.TRISC7 = 1; //RXD HighZ
+    RCSTAbits.SPEN = 1;
     TXSTAbits.TXEN = 1;
     RCSTAbits.CREN = 1;
-    RCSTAbits.SPEN = 1;
 }
 void USARTCheck()
 {
@@ -72,7 +43,7 @@ void EEWrite(char addr, char data)
 {
     char GIEbit;
     EEADR = addr;
-    EEDAT = data;
+    EEDATA = data;
     EECON1bits.EEPGD = 0;
     EECON1bits.WREN = 1;
     GIEbit = INTCONbits.GIE;
@@ -89,13 +60,17 @@ char EERead(char addr)
     EEADR = addr;
     EECON1bits.EEPGD = 0;
     EECON1bits.RD = 1;
-    return EEDAT;
+    return EEDATA;
 }
-void ADCSetup()
+
+void ADCSetup(char mode)
 {
-    ADCON0bits.ADCS = 0b11; //Ajusta el TAD a FRC
-    ADCON1bits.VCFG0 = 0; //Ref+    0=VDD   1=AN3
-    ADCON1bits.VCFG1 = 0; //Ref+1    0=VSS   1=AN2
+    ADCON0bits.ADCS0 = 1; //Ajusta el TAD a FRC
+    ADCON0bits.ADCS1 = 1; //Ajusta el TAD a FRC
+#if defined(_16F877A) && !defined(_16F876A) && !defined(_16F874A) && !defined(_16F873A)
+    ADCON1bits.ADCS2 = 0; //Ajusta el TAD a FRC
+#endif
+    ADCON1bits.PCFG = mode;
     ADCON0bits.ADON = 1;
 }
 void ADCStart(char ch)
