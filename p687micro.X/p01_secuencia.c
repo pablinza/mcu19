@@ -25,19 +25,19 @@ void Destello()
 }
 void Secuencia()
 {
-    if(descnt < 10) 
+    if(descnt < 10) //Se cumple si transcurrio menos de 100ms
     {
         descnt ++;
         return;
     }
     descnt = 0;
-    if(BUT1pin == 0) //Si RB4 es 0
+    if(BUT1pin == 0) //Si RB4 es 0 pulsador esta presionado
     {
         if(dato != 0)
             dato = dato >> 1; //Desplazamiento derecha
         else dato = 0x80;
     }
-    if(BUT2pin == 0) //Si RB6 es 0
+    if(BUT2pin == 0) //Si RB6 es 0 pulsador esta presionado
     {
         if(dato != 0)
             dato = dato << 1; //Desplazamiento izquiera
