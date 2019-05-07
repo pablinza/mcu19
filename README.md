@@ -31,5 +31,8 @@ Universidad Evangelica Boliviana.
 - P12 - Lectura de Distancia SR04(Modulo TMR1)
 - P13 - Control de Servomotor(Modulo TMR1)
 
+Pablo Zarate Arancibia
+Ingeniero Electronico
+pablinzte@gmail.com
 
 
