@@ -20,16 +20,9 @@ Universidad Evangelica Boliviana.
 - P01 - Dezplazamiento LED con pulsador(Prueba de los Puertos E/S)
 - P02 - Reloj con pantalla LCD (Uso de los puertos E/S)
 - P03 - Semaforo Digital (Manejo de la interrupcion INTF)
-- P04 - Byte Transfer con Pulsador y LED(Comunicacion USART)
-- P05 - String Transfer con Pulsador y LED(Comunicacion USART)
-- P06 - Lectura Analogica POT(Conversion ADC)
-- P07 - Monitor remoto HC-05
-- P08 - Configuracion ESP8266
-- P09 - Web monitor ESP8266
-- P10 - Temporizador Led con Interrupcion(Modulo TMR0)
-- P11 - Contador de pulsos(Modulo TMR0)
-- P12 - Lectura de Distancia SR04(Modulo TMR1)
-- P13 - Control de Servomotor(Modulo TMR1)
+- P04 - Byte Transfer con Pulsador y LED(USART y Bluetooth HC-05)
+- P05 - String Transfer control Servo(USART + TMR1)
+- P06 - Lectura Analogica y Control Servo(Conversion ADC + TMR1 + USART)
 
 Pablo Zarate Arancibia
 Ingeniero Electronico
