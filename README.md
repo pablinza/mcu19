@@ -1,5 +1,5 @@
 # mcu19
-![Repositorio de Practicas](https://github.com/pablinza/mcu19/mcu19_git.png)
+![Repositorio de Practicas](https://github.com/pablinza/mcu19//blob/master/mcu19_git.png)
 # Microcontroladores PIC16F.
 
 Carpeta de la materia Microcontroladores U.E.B con los ejercicios practicos en Laboratorio. Proyecto creado en MPLABX utilizando el compilador XC8 y el PIC16F887 14kb/368b/256EP Ejemplos practicos para los PIC16F687/PIC16F886/PIC12F675
