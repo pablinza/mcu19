@@ -1,16 +1,14 @@
 /************************************************************************
 * Libreria de rutinas basicas para los Recursos/Perifericos de los MCU	*
-* 				PIC16F882/F883/F884/F886/F887 			   				* 
+* 				PIC16F87xA /PIC16F87x 			   				* 
 *    Company: Universidad Evangelica Boliviana 							*
 *     Author: Pablo Zarate A. pablinza@me.com							*
-*    Version: Dec 2018 V18.12  										*
+*    Version: Dec 2018 V18.12 			    							*
 *    Summary: Es una libreria de funciones y procedimientos de uso base *
-*			  para los PIC serie 16F88x empleados en la materia ELT-436.*
+*			  para los PIC serie 16F87x empleados en la materia ELT-436.*
 ************************************************************************/
-#ifndef  PERIPHERAL_LIB
-#define  PERIPHERAL_LIB
-
-#if !defined(_16F882) && !defined(_16F884) && !defined(_16F886) && !defined(_16F887)
+#if !defined(_16F877) && !defined(_16F876) && !defined(_16F874) && !defined(_16F873)\
+&& !defined(_16F877A) && !defined(_16F876A) && !defined(_16F874A) && !defined(_16F873A)
 	#error "Libreria rutinas.c no corresponde al PIC seleccionado"
 #endif
 #ifndef _XTAL_FREQ
@@ -19,11 +17,6 @@
 #define true 1
 #define false 0
 #define EnablePU() OPTION_REGbits.nRBPU = 0 //Activa las pullups del PORTB
-/************************************************
- * 				Modulo OSCILADOR				*
- ************************************************/
-void OSCSetup();					//Ajusta el oscilador interno a _XTAL_FREQ
-
 /************************************************
  * 				Modulo USART					*
  ************************************************/
@@ -43,7 +36,22 @@ char EERead(char addr);				//Lee un byte de la memoria EEPROM
 /************************************************
  * 			Modulo Conversor ADC				*
  ************************************************/
-void ADCSetup(); 
+#define AD01234567  0b0000   //Set ANS0-ANS7
+#define AD012H4567  0b0001   //Set ANS0-ANS2,ANS3(Vref+),ANS4-ANS7
+#define AD01234     0b0010   //Set ANS0-ANS4
+#define AD012H4     0b0011   //Set ANS0-ANS2,ANS3(Vref+),ANS4
+#define AD013       0b0100   //Set ANS0-ANS3
+#define AD01H       0b0101   //Set ANS0-AN1,ANS3(Vref+)
+#define ADOFF       0b0111   //All Digital
+#define AD01LH4567  0b1000   //Set ANS0-ANS1,ANS2(Vref-),ANS3(Vref+),ANS4-ANS7
+#define AD012345    0b1001    //Set ANS0-ANS5
+#define AD012H45    0b1010    //Set ANS0-ANS2, ANS3(Vref+), ANS4-ANS5
+#define AD01LH45    0b1011    //Set ANS0,ANS2(Vref-), ANS3(Vref+), ANS4-ANS5
+#define AD01LH4     0b1100    //Set ANS0-ANS2(Vref-), ANS3(Vref+), ANS4
+#define AD01LH      0b1101    //Set ANS0-ANS2(Vref-), ANS3(Vref+)
+#define AD0         0b1110    //Set ANS0
+#define AD0LH       0b1100    //Set ANS0, ANS2(Vref-), ANS3(Vref+)
+void ADCSetup(char mode); 
 void ADCStart(char ch);
 unsigned int ADCRead();
 /************************************************
@@ -103,4 +111,5 @@ void TMR2Setup(char pre, char post);
 #define TMR2Setperiod(x) PR2 = x
 #define TMR2Setval(x) TMR2 = x
 char TMR2Getval();
-#endif
+
+#include "peripheral.c"

@@ -1,9 +1,9 @@
-#pragma config FOSC = INTRC_NOCLKOUT, LVP = OFF, WDTE = OFF
+#pragma config FOSC = XT, LVP = OFF, WDTE = OFF
 #include <xc.h>
 #include <stddef.h>
 #include <stdio.h>
 #define _XTAL_FREQ 8000000
-#include "peripheral.c"
+#include "peripheral.h"
 enum st1{ ON, OFF} ledst;
 #define LEDpin PORTAbits.RA0
 #define BUTpin PORTBbits.RB0
@@ -47,9 +47,8 @@ void TaskButton()
 
 void main(void) 
 {
-    OSCSetup();
-    ANSEL = 0;
-    ANSELH = 0;
+    ADCON1bits.PCFG = 0x06; 
+    CMCONbits.CM = 0x07;
     TRISAbits.TRISA0 = 0;
     TRISBbits.TRISB0 = 1;
     EnablePU();

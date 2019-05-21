@@ -18,20 +18,21 @@ Universidad Evangelica Boliviana.
 ## Lista de practicas desarrolladas en la Materia
 - P00 - Destello LED(Prueba fusibles y oscilador)
 - P01 - Dezplazamiento LED con pulsador(Prueba de los Puertos E/S)
-- P02 - Contador con 7 Segmentos(Uso de los puertos E/S)
-- P03 - Contador con Modulo LCD (Uso de los puertos E/S)
-- P04 - Lectura de Codigo de teclado(Uso de los puertos E/S)
-- P05 - Semaforo Digital (Manejo de la interrupcion INTF)
-- P06 - Conmutadores RB (Manejo de la interrupcion INTRB)
-- P07 - Byte Transfer con Pulsador y LED(Comunicacion USART)
-- P08 - String Transfer con Pulsador y LED(Comunicacion USART)
-- P09 - Lectura Analogica POT(Conversion ADC)
-- P10 - Medicion de Temperatura(Conversion ADC)
-- P11 - Temporizador Led con Interrupcion(Modulo TMR0)
-- P12 - Contador de pulsos(Modulo TMR0)
-- P13 - Temporizador Led con Interrupcion(Modulo TMR2)
-- P14 - Lectura de Distancia SR04(Modulo TMR1)
-- P15 - Control de Servomotor(Modulo TMR1)
+- P02 - Reloj con pantalla LCD (Uso de los puertos E/S)
+- P03 - Semaforo Digital (Manejo de la interrupcion INTF)
+- P04 - Byte Transfer con Pulsador y LED(Comunicacion USART)
+- P05 - String Transfer con Pulsador y LED(Comunicacion USART)
+- P06 - Lectura Analogica POT(Conversion ADC)
+- P07 - Monitor remoto HC-05
+- P08 - Configuracion ESP8266
+- P09 - Web monitor ESP8266
+- P10 - Temporizador Led con Interrupcion(Modulo TMR0)
+- P11 - Contador de pulsos(Modulo TMR0)
+- P12 - Lectura de Distancia SR04(Modulo TMR1)
+- P13 - Control de Servomotor(Modulo TMR1)
 
+Pablo Zarate Arancibia
+Ingeniero Electronico
+pablinzte@gmail.com
 
 
