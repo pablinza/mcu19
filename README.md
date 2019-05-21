@@ -2,6 +2,10 @@
 ![Repositorio de Practicas](mcu19_git.png)
 # Microcontroladores PIC16F.
 
+<p align="center">
+  <img width="460" height="300" src="mcu19_git.png"></img>
+</p>
+
 Carpeta de la materia Microcontroladores U.E.B con los ejercicios practicos en Laboratorio. Proyecto creado en MPLABX utilizando el compilador XC8 y el PIC16F887 14kb/368b/256EP Ejemplos practicos para los PIC16F687/PIC16F886/PIC12F675
 
 Los archivos con extension .c corresponden al codigo fuente de un programa o practica
