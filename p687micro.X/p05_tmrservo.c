@@ -18,9 +18,9 @@
 #define svslot (65536UL - (2000UL/svnum)) //Calculo del slot de tiempo a cada servo
 #define sv1pin PORTCbits.RC0	//Pin del servo1
 #define sv2pin PORTCbits.RC1	//Pin del servo2
-#define left 900 		//Definicion de tiempo para posicion 0°	(900ms)
-#define center 1400		//Definicion de tiempo para posicion 90° (1400ms)
-#define right 1900		//Definicion de tiempo para posicion 180° (1900ms)
+#define left 900 		//Definicion de tiempo para posicion 0Â°	(900ms)
+#define center 1400		//Definicion de tiempo para posicion 90Â° (1400ms)
+#define right 1900		//Definicion de tiempo para posicion 180Â° (1900ms)
 volatile unsigned int svtime, sv1val = center, sv2val = center;
 char svon = 0;
 unsigned int ledcnt = 0;
@@ -53,7 +53,7 @@ void interrupt isr()    //Rutina de servicio a la interrupcion
                     svtime = 65536 - sv1val; //Tiempo para finalizar pulso
                 else
                 {
-                    svtime = svslot + sv1val; //Tiempo para iniciar pulso
+                    svtime = svslot - sv1val; //Tiempo para iniciar pulso
                     svon ++;
                 }
                 break;
@@ -63,7 +63,7 @@ void interrupt isr()    //Rutina de servicio a la interrupcion
                     svtime = 65536 - sv2val; //Tiempo para finalizar pulso
                 else
                 {
-                    svtime = svslot + sv2val; //Tiempo para iniciar pulso
+                    svtime = svslot - sv2val; //Tiempo para iniciar pulso
                     svon ++;
                 }
         }
