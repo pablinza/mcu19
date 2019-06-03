@@ -110,7 +110,7 @@ void main(void) //Funcion principal
             if(msg[0] == 'Y')
             {   
                 sigy = atoi(&msg[1]); //Recupera y converte a entero
-                sv2val = 900 + (sigy * 10); Ajusta el tiempo del servo 2
+                sv2val = 900 + (sigy * 10); //Ajusta el tiempo del servo 2
             }
             rxcnt = 0;
             LED2pin = 0;
