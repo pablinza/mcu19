@@ -128,7 +128,7 @@ void main(void) //Funcion principal
             ADCStart(2); //Inicia la captura por el canal AN2
             adcval = ADCRead(); //Lee el valor ADC
             adcval = adcval / 10; //Division en 10
-            printf("A%02u\n"); //Envia el valor por el puerto USART
+            printf("A%02u\n", adcval); //Envia el valor por el puerto USART
         }
         __delay_ms(1);
     }
