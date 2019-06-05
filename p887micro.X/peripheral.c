@@ -2,7 +2,7 @@
 * Libreria de rutinas basicas para los PIC16F882/F883/F884/F886/F887    * 
 *    Company: Universidad Evangelica Boliviana 							*
 *     Author: Pablo Zarate A. pablinza@me.com							*
-*    Version: DEC 2019 V19.03  	     									*
+*    Version: DEC 2018 V18.12  	     									*
 *    Summary: Es una libreria de funciones y procedimientos de uso base *
 *			  para los PIC serie 16F88x empleados en la materia ELT-436.*
 ************************************************************************/
@@ -34,7 +34,7 @@ void OSCSetup()
 #endif
 }
 
-#ifndef USART_LIB
+#ifndef _USART_LIB
 void USARTSetup(unsigned int baud)
 {
     unsigned int brg;
@@ -94,7 +94,7 @@ void ADCSetup()
 {
     ADCON0bits.ADCS = 0b11; //Ajusta el TAD a FRC
     ADCON1bits.VCFG0 = 0; //Ref+    0=VDD   1=AN3
-    ADCON1bits.VCFG1 = 0; //Ref+1    0=VSS   1=AN2
+    ADCON1bits.VCFG1 = 0; //Ref-    0=VSS   1=AN2
     ADCON0bits.ADON = 1;
 }
 void ADCStart(char ch)
@@ -108,7 +108,7 @@ unsigned int ADCRead()
     unsigned int value;
     while(ADCON0bits.GO);
     value = ADRESH;
-    value = (value << 8) & 0xFF00;
+    value = value << 8;
     value = value | ADRESL;
     value = value >> 6;
     return value;

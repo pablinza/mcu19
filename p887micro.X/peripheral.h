@@ -3,12 +3,12 @@
 * 				PIC16F882/F883/F884/F886/F887 			   				* 
 *    Company: Universidad Evangelica Boliviana 							*
 *     Author: Pablo Zarate A. pablinza@me.com							*
-*    Version: Dec 2019 V19.03  										*
+*    Version: Dec 2018 V18.12  										*
 *    Summary: Es una libreria de funciones y procedimientos de uso base *
 *			  para los PIC serie 16F88x empleados en la materia ELT-436.*
 ************************************************************************/
-#ifndef  PERIPHERAL_LIB
-#define  PERIPHERAL_LIB
+#ifndef  _PERIPHERAL_LIB
+#define  _PERIPHERAL_LIB
 
 #if !defined(_16F882) && !defined(_16F884) && !defined(_16F886) && !defined(_16F887)
 	#error "Libreria rutinas.c no corresponde al PIC seleccionado"
@@ -27,7 +27,7 @@ void OSCSetup();					//Ajusta el oscilador interno a _XTAL_FREQ
 /************************************************
  * 				Modulo USART					*
  ************************************************/
-#ifndef USART_LIB
+#ifndef _USART_LIB
 void USARTSetup(unsigned int baud);	//Inicia y configura la velocidad
 void USARTCheck();					//Verifica si hay errores y reinicia el receptor
 #endif
@@ -103,5 +103,7 @@ void TMR2Setup(char pre, char post);
 #define TMR2Setperiod(x) PR2 = x
 #define TMR2Setval(x) TMR2 = x
 char TMR2Getval();
+
 #include "peripheral.c"
+
 #endif
