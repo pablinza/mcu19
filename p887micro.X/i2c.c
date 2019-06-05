@@ -3,18 +3,8 @@
  *  Autor: Pablo Zarate email:pablo@digital-bo.com
  *  facebook group: ELECTRONICA MCU 
  *  Material de uso para aprendizaje en ELT436 U.E.B.
- *  V18.1105
- *******************************************************************************/
-// DOM-IGNORE-BEGIN
-/*******************************************************************************
-Derechos de Autor PCZ pablinza@me.com.
-Se autoriza el uso, copia y distribucion de este software con fines educativos
-
-Favor tomar en cuenta lo siguiente:
-El software y documentacion provisto no implica garantia alguna en cuanto al uso 
-y sus posibles resultados directos o indirectos, incluyendo posibles incidentes, 
-daños personales, daños materiales, perdida de informacion, etc.
-*******************************************************************************/
+ *  V19.0211
+ **********************************************************************/
 void I2CSetup(unsigned int rate)
 {
   SSPCON = 0; //Reset Values
