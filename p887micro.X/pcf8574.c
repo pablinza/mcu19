@@ -1,12 +1,14 @@
-/************************************************************
- *  Libreria PCF8574 para el modulo LCD por I2C				*
- *  Autor: Pablo Zarate email:pablo@digital-bo.com			*
- *  facebook group: ELECTRONICA MCU 						*
- *  Material de uso para aprendizaje en ELT436 U.E.B.		*
- * 	Requiere libreria I2C Addr: 0100xxxR/W					*
- *  PIN Mapping LCD <DB7><DB6><DB5><DB4><LED><EN><RW><RS>	*
- *              PCF < P7>< P6>< P5>< P4>< P3><P2><P1><P0>	*
- ***********************************************************/
+/****************************************************************
+ *  Libreria PCF8574 para el modulo LCD por I2C					*
+ *  Autor: Pablo Zarate email:pablo@digital-bo.com				*
+ *  facebook group: ELECTRONICA MCU 							*
+ *  Material de uso para aprendizaje en ELT436 U.E.B.			*
+ * 	Requiere libreria I2C Addr: 0100xxxR/W						*
+ *  PIN Mapping LCD <DB7><DB6><DB5><DB4><LED><EN><RW><RS>		*
+ *              PCF < P7>< P6>< P5>< P4>< P3><P2><P1><P0>		*
+ * #define PCFADDR 0b01001110 //A2=1 A1=1 A0=1 PCF8574 20h-27h  *
+ * #define PCFADDR 0b01111110 //A2=1 A1=1 A0=1 PCF8574A 38h-3Fh *
+ ****************************************************************/
 void PCFSetRS(char mode) //RS ON/OFF
 {
     pcfport &= 0b11111110;
@@ -49,13 +51,6 @@ void PCFSetLED(char mode) //Backlight ON
 }
 void PCFSetDB(char nibble) //Set only DB data
 {
-    //char pcfdata;
-    //I2CIdle(); 
-    //I2CStart();
-    //I2CWrite(PCFADDR | 1); 
-    //pcfdata = I2CRead(); //Read PCF data
-    //I2CStop();
-    
     pcfport &= 0b00001111;
     nibble <<= 4;
     pcfport |= nibble;
