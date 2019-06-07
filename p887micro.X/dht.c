@@ -20,18 +20,29 @@ char DHTReadbyte()
 	while(bitn)
     {
 		cnt = 0;
-        while(!DHTpin) //Next: wait until pin goes high max 55uS
+#if _XTAL_FREQ > 4000000        
+        while(!DHTpin)//Next: wait until pin goes high max 55uS
         {
-            //__delay_us(1);
-            //if(cnt++ > 50) //min 40uS max55uS, Estimated DHT22
-            //    return 0;
+            NOP();
+            if(cnt++ > 50) //min 40uS max55uS, Estimated DHT22
+                return 0;
         }
-        __delay_us(25); //26uS=0 logic 70uS=1 logic, Estimated DHT22
-        if(DHTpin)
+        __delay_us(35);//Normal Tcy 26uS=0 logic 70uS=1 logic, Estimated DHT22
+#else
+        while(!DHTpin); 
+        __delay_us(25);//Low Tcy correction 
+#endif
+       if(DHTpin)
             res |= 0x01;
 		bitn --;
         if(bitn) res <<= 1;
-        while (DHTpin); //Wait for end
+        cnt = 0;
+        while (DHTpin) //Wait for end
+        {
+            NOP();
+            if(cnt++ > 99) //min 40uS max55uS, Estimated DHT22 
+                return 0;
+        }
 	}
     return res;
 }
@@ -70,12 +81,10 @@ char DHTUpdate(dhtstruct *dht)
             return 0;
     }
     //Read 5byte data <HighRH><LowRH><HIGHTE><LOWTE><CHK>
-    putchar('S');
     urh = DHTReadbyte();
     lrh = DHTReadbyte();
     ute = DHTReadbyte();
     lte = DHTReadbyte();
-    printf("s1:%2u-%2u-%2u-%2u\r\n", urh, lrh, ute, lte);
     chk = DHTReadbyte(); //Checksum
     cnt = urh + lrh + ute + lte;
     if(chk != cnt)

@@ -8,6 +8,10 @@
  * #define DHTpin PORTXbits.RXX //Pin para los datos I/O		*
  * #define DHTtris TRISXbits.TRISXX //Control I/O				*
  ****************************************************************/
+#if _XTAL_FREQ < 4000000  
+#error "Fosc bajo para sensor rutinas DHT"
+#endif
+
 #define DHT11 1 //40 bits <8b:intHU><8b:decHU><8b:intTE><8b:decTE><8b:chk>
 #define DHT22 2 //40 bits <16:HU><16b:TE><8b:chk>
 #if !defined(DHTpin) && !defined(DHTtris)
