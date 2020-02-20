@@ -28,8 +28,5 @@ Universidad Evangelica Boliviana.
 - P05 - String Transfer control Servo(USART + TMR1)
 - P06 - Lectura Analogica y Control Servo(Conversion ADC + TMR1 + USART)
 
-Pablo Zarate Arancibia
-Ingeniero Electronico
-pablinzte@gmail.com
-
+Pablo Zarate Arancibia Ingeniero Electronico pablinzte@gmail.com
 
